@@ -1,0 +1,21 @@
+server:
+  port: 8888
+ 
+security: 
+    basic: 
+        enable: true
+    user: 
+        name: admin
+        password: 123456
+#providers这个是自己命名的，ribbon,listOfServer这两个是规定的
+providers:
+  ribbon:
+    listOfServers: localhost:8001,localhost:8002
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url: 
+      defaultZone: http://${security.user.name}:${security.user.password}@${eureka.instance.hostname}:${server.port}/eureka/
